@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title id="meta-title">K3R CLIMATIZAÇÃO - Instalações e Manutenção em Palhoça</title>
+    <meta name="description" id="meta-desc" content="Especialistas em instalação e manutenção de ar-condicionado em Palhoça e região. Qualidade, preço justo e garantia com o técnico Kassio.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Outfit:wght@400;500;600&family=Inter:wght@400;500&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: 'var(--primary)',
+                            foreground: '#ffffff',
+                        },
+                        secondary: 'var(--secondary)',
+                        accent: 'var(--accent)',
+                        muted: {
+                            DEFAULT: '#f3f4f6',
+                            foreground: '#6b7280',
+                        },
+                        card: {
+                            DEFAULT: '#ffffff',
+                            foreground: '#111827',
+                        }
+                    },
+                    borderRadius: {
+                        'xl': '0.75rem',
+                        '2xl': '1rem',
+                        '3xl': '1.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #00aaff;
+            --accent: #ffcc00;
+            --background: #FFFFFF;
+            --foreground: #111827;
+            --max-width: 1280px;
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--background);
+            color: var(--foreground);
+        }
+        
+        h1, h2, h3, .font-heading { 
+            font-family: 'Montserrat', sans-serif; 
+        }
+
+        .container {
+            max-width: var(--max-width);
+        }
+
+        /* Animações simples para simular Framer Motion */
+        .animate-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilo do Accordion */
+        details summary::-webkit-details-marker { display: none; }
+        details[open] summary i { transform: rotate(180deg); }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: #25D366;
+            color: white;
+            padding: 16px;
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 100%;
+            margin-right: 12px;
+            background: white;
+            color: #1f2937;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f3f4f6;
+        }
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b">
+        <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <h1 id="empresa-nome" class="text-lg md:text-2xl font-bold text-primary leading-tight"></h1>
+            </div>
+
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex items-center gap-6 lg:gap-8 font-medium text-sm lg:text-base">
+                <a href="#inicio" class="hover:text-primary transition-colors">Início</a>
+                <a href="#servicos" class="hover:text-primary transition-colors">Serviços</a>
+                <a href="#sobre" class="hover:text-primary transition-colors">Sobre</a>
+                <a href="#galeria" class="hover:text-primary transition-colors">Galeria</a>
+                <a href="#faq" class="hover:text-primary transition-colors">FAQ</a>
+                <a href="#contato" class="hover:text-primary transition-colors">Contato</a>
+                <a id="nav-wa-btn" href="#" target="_blank" class="bg-primary text-white px-6 py-2 rounded-full flex items-center gap-2 hover:opacity-90 transition shadow-sm">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button id="mobile-menu-toggle" class="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t animate-in">
+            <div class="container mx-auto px-4 py-6 flex flex-col gap-3">
+                <a href="#inicio" class="mobile-link py-3 border-b border-gray-100">Início</a>
+                <a href="#servicos" class="mobile-link py-3 border-b border-gray-100">Serviços</a>
+                <a href="#sobre" class="mobile-link py-3 border-b border-gray-100">Sobre</a>
+                <a href="#galeria" class="mobile-link py-3 border-b border-gray-100">Galeria</a>
+                <a href="#faq" class="mobile-link py-3 border-b border-gray-100">FAQ</a>
+                <a href="#contato" class="mobile-link py-3 border-b border-gray-100">Contato</a>
+                <a id="mobile-wa-btn" href="#" target="_blank" class="bg-primary text-white py-3 rounded-lg text-center font-bold mt-2">
+                    <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section id="inicio" class="relative overflow-hidden bg-black flex items-center justify-center w-full">
+            <img id="hero-img" src="" alt="Hero" class="w-full h-auto object-contain block">
+        </section>
+
+        <!-- Serviços Section -->
+        <section id="servicos" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                    <h2 id="servicos-titulo" class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4"></h2>
+                    <div class="h-1.5 w-20 bg-primary mx-auto rounded-full mb-6"></div>
+                    <p id="servicos-subtitulo" class="text-muted-foreground text-base md:text-lg"></p>
+                </div>
+                <div id="servicos-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    <!-- JS renders cards here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre Section -->
+        <section id="sobre" class="py-16 md:py-24 bg-gray-50/50">
+            <div class="container mx-auto px-4">
+                <div class="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
+                    <div class="order-2 lg:order-1 relative">
+                        <img id="sobre-img" src="" alt="Sobre Nós" class="rounded-2xl md:rounded-3xl shadow-2xl z-10 relative w-full">
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-accent/20 rounded-full -z-0"></div>
+                        <div class="absolute -top-6 -left-6 w-24 h-24 bg-primary/20 rounded-full -z-0"></div>
+                    </div>
+                    <div class="order-1 lg:order-2">
+                        <h2 id="sobre-titulo" class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6"></h2>
+                        <p id="sobre-texto" class="text-muted-foreground text-base md:text-lg leading-relaxed mb-8"></p>
+                        <div id="sobre-diferenciais" class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                            <!-- JS renders diffs here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Depoimentos Section -->
+        <section class="py-16 md:py-24 bg-white overflow-hidden">
+            <div class="container mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                    <h2 id="depoimentos-titulo" class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4"></h2>
+                    <p id="depoimentos-subtitulo" class="text-muted-foreground text-base md:text-lg"></p>
+                </div>
+                <div id="depoimentos-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                    <!-- JS renders testimonials here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Galeria Section -->
+        <section id="galeria" class="py-16 md:py-24 bg-gray-50/50">
+            <div class="container mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                    <h2 id="galeria-titulo" class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4"></h2>
+                    <p id="galeria-subtitulo" class="text-muted-foreground text-base md:text-lg"></p>
+                </div>
+                <div id="galeria-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                    <!-- JS renders gallery here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                    <h2 id="faq-titulo" class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4"></h2>
+                    <p id="faq-subtitulo" class="text-muted-foreground text-base md:text-lg"></p>
+                </div>
+                <div id="faq-lista" class="max-w-3xl mx-auto space-y-4">
+                    <!-- JS renders FAQ here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Localização e Horários -->
+        <section class="py-16 md:py-24 bg-gray-50/50">
+            <div class="container mx-auto px-4">
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div>
+                        <h2 id="local-titulo" class="text-2xl font-bold mb-6"></h2>
+                        <div class="w-full h-64 md:h-96 rounded-2xl overflow-hidden shadow-lg">
+                            <iframe id="google-maps" src="" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 id="horarios-titulo" class="text-2xl font-bold mb-6"></h2>
+                        <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg">
+                            <div id="horarios-lista" class="space-y-4">
+                                <!-- JS renders hours here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato Section -->
+        <section id="contato" class="py-16 md:py-24 bg-primary text-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 id="contato-titulo" class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4"></h2>
+                <p id="contato-subtitulo" class="text-lg md:text-xl opacity-90 mb-12"></p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                    <div class="bg-white/10 p-8 rounded-3xl backdrop-blur-sm">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">Telefone</h3>
+                        <p id="contato-fone"></p>
+                    </div>
+                    <div class="bg-white/10 p-8 rounded-3xl backdrop-blur-sm">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">E-mail</h3>
+                        <p id="contato-email" class="break-all"></p>
+                    </div>
+                    <div class="bg-white/10 p-8 rounded-3xl backdrop-blur-sm">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">Endereço</h3>
+                        <p id="contato-endereco"></p>
+                    </div>
+                </div>
+
+                <a id="final-wa-btn" href="#" target="_blank" class="bg-white text-primary px-12 py-6 rounded-full text-xl font-bold shadow-2xl hover:scale-105 transition transform inline-flex items-center gap-3">
+                    <i class="fab fa-whatsapp text-2xl"></i> <span id="contato-btn-text"></span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white py-12 md:py-16 border-t">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="text-center md:text-left">
+                    <h2 id="footer-nome" class="text-xl md:text-2xl font-bold text-primary mb-2"></h2>
+                    <p id="footer-slogan" class="text-muted-foreground max-w-xs text-sm md:text-base"></p>
+                </div>
+                <div id="social-links" class="flex gap-4">
+                    <!-- JS renders social links here -->
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t text-center text-muted-foreground">
+                <p class="text-sm md:text-base">© <span id="year"></span> <span id="footer-copy"></span>. Todos os direitos reservados.</p>
+                <p class="mt-2 text-xs md:text-sm">Desenvolvido com excelência para o seu negócio.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a id="float-wa-btn" href="#" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp text-3xl"></i>
+        <span class="whatsapp-tooltip">Fale Conosco</span>
+    </a>
+
+    <script src="config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const data = CONFIG;
+            const waLink = `https://wa.me/${data.empresaInfo.whatsapp}`;
+
+            // SEO & Meta
+            document.title = data.seo.titulo;
+            document.getElementById('meta-desc').content = data.seo.descricao;
+
+            // Global Info
+            document.getElementById('empresa-nome').innerText = data.empresaInfo.nome;
+            document.getElementById('footer-nome').innerText = data.empresaInfo.nome;
+            document.getElementById('footer-copy').innerText = data.empresaInfo.nome;
+            document.getElementById('footer-slogan').innerText = data.empresaInfo.slogan;
+            document.getElementById('year').innerText = new Date().getFullYear();
+
+            // WhatsApp Links
+            document.getElementById('nav-wa-btn').href = waLink;
+            document.getElementById('mobile-wa-btn').href = waLink;
+            document.getElementById('final-wa-btn').href = waLink;
+            document.getElementById('float-wa-btn').href = waLink;
+
+            // Mobile Menu Logic
+            const toggle = document.getElementById('mobile-menu-toggle');
+            const menu = document.getElementById('mobile-menu');
+            toggle.onclick = () => menu.classList.toggle('hidden');
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.onclick = () => menu.classList.add('hidden');
+            });
+
+            // Hero
+            document.getElementById('hero-img').src = data.hero.imagem;
+            document.getElementById('hero-img').alt = data.hero.titulo;
+
+            // Serviços
+            document.getElementById('servicos-titulo').innerText = data.servicos.tituloSecao;
+            document.getElementById('servicos-subtitulo').innerText = data.servicos.subtituloSecao;
+            const sGrid = document.getElementById('servicos-grid');
+            data.servicos.lista.forEach(s => {
+                sGrid.innerHTML += `
+                    <div class="group bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-center hover:shadow-2xl transition-all duration-300">
+                        <div class="w-full h-48 mb-6 rounded-xl overflow-hidden">
+                            <img src="${s.imagem}" alt="${s.titulo}" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300">
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">${s.titulo}</h3>
+                        <p class="text-muted-foreground text-sm md:text-base leading-relaxed">${s.descricao}</p>
+                    </div>
+                `;
+            });
+
+            // Sobre
+            document.getElementById('sobre-titulo').innerText = data.sobre.titulo;
+            document.getElementById('sobre-texto').innerText = data.sobre.texto;
+            document.getElementById('sobre-img').src = data.sobre.imagem;
+            const dGrid = document.getElementById('sobre-diferenciais');
+            data.sobre.diferenciais.forEach(d => {
+                dGrid.innerHTML += `
+                    <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm">
+                        <span class="text-2xl">${d.icone}</span>
+                        <div>
+                            <h4 class="font-bold text-sm">${d.titulo}</h4>
+                            <p class="text-xs text-muted-foreground">${d.descricao}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Depoimentos
+            document.getElementById('depoimentos-titulo').innerText = data.depoimentos.tituloSecao;
+            document.getElementById('depoimentos-subtitulo').innerText = data.depoimentos.subtituloSecao;
+            const tGrid = document.getElementById('depoimentos-grid');
+            data.depoimentos.lista.forEach(t => {
+                let stars = '';
+                for(let i=0; i<t.avaliacao; i++) stars += '<i class="fas fa-star text-accent text-xs"></i>';
+                tGrid.innerHTML += `
+                    <div class="bg-white p-8 rounded-3xl shadow-lg border border-gray-50 relative">
+                        <div class="absolute top-6 left-8 text-primary/10 text-6xl font-serif">"</div>
+                        <p class="italic text-gray-700 mb-6 relative z-10">${t.texto}</p>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-bold text-primary">${t.nome}</p>
+                                <p class="text-xs text-muted-foreground">${t.cargo}</p>
+                            </div>
+                            <div class="flex gap-1">${stars}</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Galeria
+            document.getElementById('galeria-titulo').innerText = data.galeria.tituloSecao;
+            document.getElementById('galeria-subtitulo').innerText = data.galeria.subtituloSecao;
+            const gGrid = document.getElementById('galeria-grid');
+            if(data.galeria.imagens.length === 0) {
+                // Mock images if empty for visual
+                const mockImages = [data.hero.imagem, data.sobre.imagem, data.servicos.lista[0].imagem];
+                mockImages.forEach(img => {
+                    gGrid.innerHTML += `
+                        <div class="rounded-xl overflow-hidden shadow-md aspect-square">
+                            <img src="${img}" class="w-full h-full object-cover">
+                        </div>
+                    `;
+                });
+            }
+
+            // FAQ
+            document.getElementById('faq-titulo').innerText = data.faq.tituloSecao;
+            document.getElementById('faq-subtitulo').innerText = data.faq.subtituloSecao;
+            const fList = document.getElementById('faq-lista');
+            data.faq.perguntas.forEach(f => {
+                fList.innerHTML += `
+                    <details class="group bg-gray-50 rounded-2xl overflow-hidden border border-transparent open:border-gray-100 open:bg-white transition-all">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold list-none">
+                            ${f.pergunta}
+                            <i class="fas fa-chevron-down text-sm transition-transform duration-300"></i>
+                        </summary>
+                        <div class="px-6 pb-6 text-muted-foreground leading-relaxed">
+                            ${f.resposta}
+                        </div>
+                    </details>
+                `;
+            });
+
+            // Localização e Horários
+            document.getElementById('local-titulo').innerText = data.localizacao.tituloSecao;
+            document.getElementById('google-maps').src = data.localizacao.googleMapsUrl;
+            document.getElementById('horarios-titulo').innerText = data.horarios.tituloSecao;
+            const hList = document.getElementById('horarios-lista');
+            data.horarios.dias.forEach(h => {
+                hList.innerHTML += `
+                    <div class="flex items-center justify-between py-3 border-b border-gray-100 last:border-0">
+                        <div class="flex items-center gap-3">
+                            <i class="far fa-clock text-primary"></i>
+                            <span class="font-semibold">${h.dia}</span>
+                        </div>
+                        <span class="${h.fechado ? 'text-muted-foreground' : 'text-primary font-bold'}">${h.horario}</span>
+                    </div>
+                `;
+            });
+
+            // Contato Final Info
+            document.getElementById('contato-titulo').innerText = data.contato.titulo;
+            document.getElementById('contato-subtitulo').innerText = data.contato.subtitulo;
+            document.getElementById('contato-fone').innerText = data.empresaInfo.telefone;
+            document.getElementById('contato-email').innerText = data.empresaInfo.email;
+            document.getElementById('contato-endereco').innerText = data.empresaInfo.endereco;
+            document.getElementById('contato-btn-text').innerText = data.contato.botaoTexto;
+
+            // Social links footer
+            const sLinks = document.getElementById('social-links');
+            const socials = [
+                { id: 'instagram', icon: 'fab fa-instagram' },
+                { id: 'facebook', icon: 'fab fa-facebook' },
+                { id: 'linkedin', icon: 'fab fa-linkedin' },
+                { id: 'youtube', icon: 'fab fa-youtube' }
+            ];
+            socials.forEach(s => {
+                if(data.empresaInfo[s.id]) {
+                    sLinks.innerHTML += `
+                        <a href="${data.empresaInfo[s.id]}" target="_blank" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+                            <i class="${s.icon}"></i>
+                        </a>
+                    `;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
