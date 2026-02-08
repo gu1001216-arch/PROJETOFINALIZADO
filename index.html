@@ -196,7 +196,7 @@
                     </div>
                     <div class="order-1 lg:order-2">
                         <h2 id="sobre-titulo" class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6"></h2>
-                        <p id="sobre-texto" class="text-muted-foreground text-base md:text-lg leading-relaxed mb-8"></p>
+                        <p id="sobre-texto" class="text-muted-foreground text-base md:text-lg leading-relaxed mb-8 text-justify"></p>
                         <div id="sobre-diferenciais" class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                             <!-- JS renders diffs here -->
                         </div>
@@ -332,7 +332,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const data = CONFIG;
-            const waLink = `https://wa.me/${data.empresaInfo.whatsapp}`;
+            const waMessage = encodeURIComponent("Olá! Vi o site da K3R Climatização e gostaria de solicitar um orçamento.");
+            const waLink = `https://wa.me/${data.empresaInfo.whatsapp}?text=${waMessage}`;
 
             // SEO & Meta
             document.title = data.seo.titulo;
